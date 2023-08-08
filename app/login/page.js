@@ -1,16 +1,11 @@
-"use client";
-import Box from "@mui/material/Box";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-
+import React from "react";
+import LoginForm from "../forms/LoginForm";
 import Card from "@mui/material/Card";
 import Container from "@mui/material/Container";
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import Navbar from "./components/Navbar";
 
-export default function Home() {
-  const router = useRouter();
+function Login() {
   return (
     <Grid container item xs={12}>
       <Container sx={{ height: "100vh", width: "100%" }}>
@@ -36,19 +31,12 @@ export default function Home() {
               alignItems: "center",
             }}
           >
-            {" "}
-            <Typography>July Bespoke</Typography>
-            <Typography variant="h3">Product Catalogue</Typography>
-            <Box>
-              <Button variant="contained" onClick={() => router.push("/login")}>
-                {" "}
-                Login
-              </Button>
-              {/* <Button variant="contained"> Login</Button> */}
-            </Box>
+            <LoginForm />
           </Card>
         </Box>
       </Container>
     </Grid>
   );
 }
+
+export default Login;

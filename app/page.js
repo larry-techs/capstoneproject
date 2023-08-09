@@ -39,12 +39,18 @@ export default function Home() {
             {" "}
             <Typography>July Bespoke</Typography>
             <Typography variant="h3">Product Catalogue</Typography>
-            <Box>
+            <Box sx={{ display: "flex", gap: 4 }}>
               <Button variant="contained" onClick={() => router.push("/login")}>
                 {" "}
                 Login
               </Button>
-              {/* <Button variant="contained"> Login</Button> */}
+              <Button
+                variant="contained"
+                onClick={() => router.push("/register")}
+              >
+                {" "}
+                Register
+              </Button>
             </Box>
           </Card>
         </Box>

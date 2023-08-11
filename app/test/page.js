@@ -17,10 +17,7 @@ export default function Profile() {
   if (isLoading) return <p>Loading...</p>;
   if (!data) return <p>No profile data</p>;
 
-  return (
-    <div>
-      <h1>{data.gender}</h1>
-      <p>{data.count}</p>
-    </div>
-  );
+  console.log(data);
+
+  return <div> hello </div>;
 }

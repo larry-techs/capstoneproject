@@ -1,4 +1,6 @@
+"use client";
 import * as React from "react";
+import { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,45 +9,62 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-function createData(
-  id,
-  ProductName,
-  division,
-  description,
-  squadExecuting,
-  charges
-) {
-  return { id, ProductName, division, description, squadExecuting, charges };
-}
+// function createData(
+//   id,
+//   ProductName,
+//   division,
+//   description,
+//   squadExecuting,
+//   charges
+// ) {
+//   return { id, ProductName, division, description, squadExecuting, charges };
+// }
 
-const rows = [
-  createData(
-    1,
-    "Bill Manager",
-    "Financial Services",
-    "Core Mpesa Upgrade",
-    "Bespoke Solutions ",
-    "crq"
-  ),
-  createData(
-    1,
-    "Bill Manager",
-    "Financial Services",
-    "Core Mpesa Upgrade",
-    "Bespoke Solutions ",
-    "crq"
-  ),
-  createData(
-    1,
-    "Bill Manager",
-    "Financial Services",
-    "Core Mpesa Upgrade",
-    "Bespoke Solutions ",
-    "crq"
-  ),
-];
+// const rows = [
+//   createData(
+//     1,
+//     "Bill Manager",
+//     "Financial Services",
+//     "Core Mpesa Upgrade",
+//     "Bespoke Solutions ",
+//     "crq"
+//   ),
+//   createData(
+//     1,
+//     "Bill Manager",
+//     "Financial Services",
+//     "Core Mpesa Upgrade",
+//     "Bespoke Solutions ",
+//     "crq"
+//   ),
+//   createData(
+//     1,
+//     "Bill Manager",
+//     "Financial Services",
+//     "Core Mpesa Upgrade",
+//     "Bespoke Solutions ",
+//     "crq"
+//   ),
+// ];
 
 export default function BasicTable() {
+  const [data, setData] = useState(null);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://api.genderize.io/?name=luc")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      });
+  }, []);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (!data) return <p>No profile data</p>;
+
+  console.log(data);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -60,19 +79,19 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {data.map((row) => (
             <TableRow
-              key={row.id}
+              key={row.productId}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
                 {row.id}
               </TableCell>
-              <TableCell align="right">{row.ProductName}</TableCell>
+              <TableCell align="right">{row.itemName}</TableCell>
               <TableCell align="right">{row.division}</TableCell>
               <TableCell align="right">{row.description}</TableCell>
-              <TableCell align="right">{row.squadExecuting}</TableCell>
-              <TableCell align="right">{row.charges}</TableCell>
+              <TableCell align="right">{row.team}</TableCell>
+              <TableCell align="right">{row.link}</TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -52,7 +52,7 @@ export default function BasicTable() {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://api.genderize.io/?name=luc")
+    fetch("http://127.0.0.1:8082/api/v1/products")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -75,7 +75,6 @@ export default function BasicTable() {
             <TableCell align="right">Division</TableCell>
             <TableCell align="right">Description</TableCell>
             <TableCell align="right">Squad Executing</TableCell>
-            <TableCell align="right">Charges</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -85,13 +84,13 @@ export default function BasicTable() {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.id}
+                {row.productId}
               </TableCell>
-              <TableCell align="right">{row.itemName}</TableCell>
-              <TableCell align="right">{row.division}</TableCell>
-              <TableCell align="right">{row.description}</TableCell>
-              <TableCell align="right">{row.team}</TableCell>
-              <TableCell align="right">{row.link}</TableCell>
+              <TableCell align="left">{row.itemName}</TableCell>
+              <TableCell align="left">{row.division}</TableCell>
+              <TableCell align="left">{row.description}</TableCell>
+              <TableCell align="left">{row.team}</TableCell>
+              <TableCell align="left">{row.link}</TableCell>
             </TableRow>
           ))}
         </TableBody>
